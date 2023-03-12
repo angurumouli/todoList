@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+    <div id="app">
+      <h1>Todo List</h1>
+      <form id="todo-form">
+        <input type="text" id="todo-input" placeholder="Add a new todo...">
+        <button type="submit">Add</button>
+      </form>
+      <ul id="todo-list"></ul>
+    </div>
+
+    <script>
+          const todoForm = document.getElementById('todo-form');
+          const todoInput = document.getElementById('todo-input');
+          const todoList = document.getElementById('todo-list');
+
+          todoForm.addEventListener('submit', function(event) {
+            // prevent the form from submitting
+            event.preventDefault();
+
+            // get the value of the input field
+            const newTodo = todoInput.value.trim();
+
+            // create a new list item element
+            const li = document.createElement('li');
+
+            // create a new span element to hold the todo text
+            const span = document.createElement('span');
+            span.textContent = newTodo;
+
+            // create a new button element to delete the todo
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', function() {
+              li.remove();
+            });
+
+            // append the span and button elements to the list item element
+            li.appendChild(span);
+            li.appendChild(deleteButton);
+
+            // append the list item element to the list
+            todoList.appendChild(li);
+
+            // clear the input field
+            todoInput.value = '';
+          });
+
+
+    </script>
+  </body>
+</html>
